@@ -15,14 +15,27 @@ LSM.js is a javascript library that makes using localstorage simpler, you can ou
 ```
 
 ## Example
-init
+### init
 ```javascript
 var lsm = new LSM("#element",{
   name: "Name",
 });
 ```
-setting and getting
+### setting and getting
 ```javascript
  lsm.set("Object",{"name":"hii"});
  console.log(lsm.get("Object")); // returns an object
 ```
+
+### localStorage default
+```javascript
+ lsm.default.set("Object",{"name":"hii"});
+ console.log(lsm.default.get("Object")); // returns an object
+```
+
+### sessionStorage
+```javascript
+ lsm.session.set("Object",{"name":"hii"});
+ console.log(lsm.session.get("Object")); // returns an object
+```
+
