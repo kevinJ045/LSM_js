@@ -2,7 +2,7 @@
 
 LSM.js is a javascript library that makes using localstorage simpler, you can output/set/get/delete/clone/rename localstorage objects
 
-##Example
+## Example
 init
 ```javascript
 var lsm = new LSM('#element',{
@@ -15,7 +15,7 @@ setting and getting
  console.log(lsm.get('Object'));
 ```
 
-##Importing
+## Importing
 ```html
 <script src="/path/to/lsm.js"></script>
 ```
