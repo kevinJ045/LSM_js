@@ -1,6 +1,6 @@
 # LSM_js
 
-LSM.js is a javascript library that makes using localstorage simpler, you can output/set/get/delete/clone/rename localstorage objects,
+LSM.js is a javascript library that makes using localstorage simpler, you can output/set/get/delete/clone/rename localstorage objects
 
 ##Example
 init
