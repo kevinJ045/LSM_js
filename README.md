@@ -5,14 +5,14 @@ LSM.js is a javascript library that makes using localstorage simpler, you can ou
 ## Example
 init
 ```javascript
-var lsm = new LSM('#element',{
-  name: 'Name',
+var lsm = new LSM("#element",{
+  name: "Name",
 });
 ```
 setting and getting
 ```javascript
- lsm.set('Object',{'name':'hii'});
- console.log(lsm.get('Object'));
+ lsm.set("Object",{"name":"hii"});
+ console.log(lsm.get("Object"));
 ```
 
 ## Importing
