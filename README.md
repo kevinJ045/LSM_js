@@ -26,6 +26,13 @@ var lsm = new LSM("#element",{
  lsm.set("Object",{"name":"hii"});
  console.log(lsm.get("Object")); // returns an object
 ```
+### cloning deleting and renaming
+```javascript
+ lsm.set("Object",{"name":"hii"});
+ lsm.clone("Object","Object2");
+ lsm.rename("Object","Object3");
+ lsm.delete("Object3");
+```
 
 ### localStorage default
 ```javascript
