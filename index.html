@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LSM.js</title>
+
+  <style type="text/css">
+    body {
+          max-width: 800px;
+          margin: 40px auto;
+          padding: 0 20px;
+          font: 18px/1.4 'Open Sans', sans-serif;
+          color: #09D0D0;
+          background-color: #0c1021;
+          text-align: center;
+        }
+        .a,.b,.c {
+          display: inline-block;
+          margin-bottom: 5px;
+          padding: 10px 30px;
+          border-radius: 5px;
+          color: #0c1021;
+          background-color: #09D0D0;
+          text-decoration: none;
+          cursor: pointer;
+          border: none;
+          position:relative;
+          top: -6px;
+          border:0;
+          -moz-outline-style:none;
+               outline:medium none;
+          transition: all 0.04s linear;
+          margin-top:10px;
+          margin-bottom:10px;
+          margin-left:2px;
+          margin-right:2px;
+      }
+      .tableContr{
+        width: 100%;
+        height: 299.219px;
+        max-height: 299.219px;
+        max-width: 100%;
+        overflow: auto;
+        overflow-x: hidden;
+        position: relative;
+      }
+      table {
+          border-collapse: collapse;
+          width: 100%;
+          text-shadow: none;
+          max-width: 100% !important;
+      }
+
+      td {
+          text-align: left;
+          padding: 8px;
+          border-bottom: 1px solid #09D0D0;
+          max-width: 50px !important;
+          width: 50% !important;
+      }
+
+      tr.active{
+        background: #09D0D0 !important;
+        color: #0c1021 !important;
+      }
+
+      td p{
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      thead,td.rare {
+        background-color: #09D0D0;
+        color: #0c1021;
+        font-size: 24px;
+        border-bottom: 1px solid #0c1021;
+      }
+
+      input,textarea,select{
+        background: #09D0D0;
+        color: #0c1021;
+        width: 80%;
+        font-size: 16px; 
+        padding: 12px 20px 12px 20px; 
+        border: 1px solid #0c1021; 
+        margin-bottom: 12px;
+      }
+
+      div.checkContr{
+        width: 80%;max-width: 100%;height: 80px;
+        
+      }
+
+      label.check{
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 22px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        margin: 15px;
+        float: left;
+      }
+
+      label.check [type=radio],label.check [type=checkbox]{
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+      }
+      label.check .mark{
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: #0c1021;
+        border: 1px solid #09D0D0;
+        transition: .5s;
+      }
+      label.check [type=radio] ~ .mark{
+        border-radius: 50px;
+      }
+      label.check [type=radio]:checked ~ .mark,
+      label.check [type=checkbox]:checked ~ .mark{
+        background-color: #09D0D0;
+        color: #0c1021;
+      }
+
+      label.check .mark:after {
+        content: "";
+        position: absolute;
+        display: none;
+        left: 9px;
+      }
+
+
+      label.check .mark:after {
+        display: block;
+      }
+
+      label.check [type=radio] ~ .mark:after {
+        top: 9px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #0c1021;
+      }
+
+      label.check [type=checkbox] ~ .mark:after {
+        top: 5px;
+        width: 5px;
+        height: 10px;
+        border: solid #0c1021;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+
+      .slidecontainer{
+        width: 80%;
+        margin: 2.5px auto;
+      }
+
+      [type=range]{
+        padding: 0;
+        -webkit-appearance: none;  
+        appearance: none;
+        width: 100%; 
+        height: 25px; 
+        background: #0c1021; 
+        border: 1px solid #09D0D0;
+        outline: none; 
+        opacity: 0.7; 
+        -webkit-transition: .2s; 
+        transition: opacity .2s;
+      }
+
+      [type=range]:hover {
+          opacity: 1; /* Fully shown on mouse-over */
+      }
+
+      /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+      [type=range]::-webkit-slider-thumb {
+          -webkit-appearance: none; /* Override default look */
+          appearance: none;
+          width: 25px; /* Set a specific slider handle width */
+          height: 25px; /* Slider handle height */
+          background: #09D0D0; /* Green background */
+          cursor: pointer; /* Cursor on hover */
+      }
+
+      [type=range]::-moz-range-thumb {
+          width: 25px; /* Set a specific slider handle width */
+          height: 25px; /* Slider handle height */
+          background: #09D0D0; /* Green background */
+          cursor: pointer; /* Cursor on hover */
+      }
+  </style>
+
+</head>
+<body>
+  <h1 data-type="LSM.js"></h1>
+  <p data-type="A javascript library to make buttons with only js"></p>
+  <a class="a github-commit" href="https://github.com/kevinj045/jsbuttons">
+    GitHub Forks: NAN <!-- Here Will be appended the forks from github-->
+  </a>
+
+  <br><br>
+
+  <section>
+    <h2 data-type="Lsm js compatiblity"></h2>
+    <p data-type="Lsm.js is compatible with every framework.^ bootstrap,materialize,framework7, etc... this little plugin is realy important to use,^"></p>
+  </section>
+
+  <section>
+    <h2 data-type="Lsm js demo"></h2>
+    <p data-type="Lsm.js full demo"></p>
+    <input type="text" id="searchInput" placeholder="Filter...">
+    <div id="lsmJs"></div>
+
+    <button class="a" id="reload">
+      Reload
+    </button>
+    <button class="a" onclick="lsm.default.set('new','You Added this');
+    lsm.output();">
+      Set Item To LSM
+    </button>
+    <button class="a" onclick="lsm.default.remove('new');lsm.output();">
+      Remove Item From LSM
+    </button>
+  </section>
+
+  <section>
+    <h2 data-type="Lsm js Form Save"></h2>
+    <p data-type="Lsm.js Form Save demo"></p>
+
+    <form id="Demo__Form">
+      
+      <input type="text" name="Demo__input_t"> <!-- name or id is required -->
+
+      <input type="password" name="Demo__input_p"> <!-- name or id is required -->
+
+      <input type="number" name="Demo__input_n"> <!-- name or id is required -->
+
+      <input type="date" name="Demo__input_date"> <!-- name or id is required -->
+
+      <input type="time" name="Demo__input_time"> <!-- name or id is required -->
+
+      <div class="slidecontainer">
+        <input type="range" name="Demo__input_ra"> <!-- name or id is required -->
+      </div>
+
+      <div class="checkContr">
+        <label class="check">
+          <input type="checkbox" name="Demo__input_c"> <!-- name or id is required -->
+          <span class="mark"></span>
+        </label>
+
+        <label class="check">
+          <input type="radio" name="Demo__input_r" value="4"> <!-- name or id is required -->
+          <span class="mark"></span>
+        </label>
+
+        <label class="check">
+          <input type="radio" name="Demo__input_r" value="5"> <!-- name or id is required -->
+          <span class="mark"></span>
+        </label>
+
+        <label class="check">
+          <input type="radio" name="Demo__input_r" value="6"> <!-- name or id is required -->
+          <span class="mark"></span>
+        </label>
+      </div>
+
+      <textarea id="Demo__input_ta">
+        
+      </textarea>
+
+      <select id="Demo__input_se">
+        <option>Hello</option>
+        <option>Hii</option>
+        <option>Have a nice day(or night)</option>
+      </select>
+
+    </form>
+
+  </section>
+
+  <section>
+    <h2 data-type="Lsm js playground OR LSM Script"></h2>
+    <p data-type="Type Words to execute an lsm"></p>
+    <p data-type="Help: set<?(item,value)?> to set stuff"></p>
+    <p data-type="get<?(item)?> to get stuff"></p>
+    <p data-type="remove<?(item)?> to remove stuff"></p>
+    <p data-type="output to output stuff"></p>
+    <p data-type="reload to reload stuff"></p>
+    <p data-type="rename<?(item,item2)?> to rename stuff"></p>
+    <p data-type="clone<?(item,item2)?> to clone stuff"></p>
+    <br>
+    <p data-type="Example:"></p>
+
+    <textarea id="LsmPlayGround" rows="5">set<?(item,value)?> get<?(item)?> clone<?(item,item2)?> get<?(item)?> get<?(item2)?></textarea>
+
+    <button class="a" id="LsmPlayGroundRun">
+      Run
+    </button>
+  </section>
+
+  <section>
+    <h2 data-type="Lsm js Cookie manager"></h2>
+    <p data-type="LSM has also a Cookie Manager, lets you use Cookies"></p>
+  </section>
+
+
+
+
+  <script src="jquery.min.js"></script>
+  <script src="lsm.js"></script>
+
+  <script>
+    console.group()
+    console.log("--LSM init--");
+    var lsm = new LSM('#lsmJs',{
+      'name': 'Demo',
+      'console': true,
+      'htmlMethods': {
+        'searchInput': '#searchInput',
+        'table': {
+            'attrs': `Attributes For Table`,
+        },
+        'contr': {
+          'attrs': `class="tableContr" Attributes For Table Container`,
+        },
+        'head': {
+          'attrs': `Attributes For Table Head`,
+        },
+        'rows': {
+          'attrs': `Attributes For Children`,
+          'onclick': function(id,val,El){
+            alert(id + ': ' +val);
+
+            El.siblings().removeClass('active');
+            El.addClass('active');
+          },
+        },
+        'tableSort': 'a-z', // z-a
+      }
+    });
+
+    console.log("Logging LSM");
+
+    console.log(lsm);
+
+    console.log("Settting DemoProp to Localstorage");
+
+    lsm.new('DemoProp',{
+      'DemoProp': 'DemoPropVal',
+      'DemoProps': 'DemoPropVals',
+      'prop1': 'val1',
+      'prop2': {
+        'val1': 'value1',
+        'val2': ['value1','value2'],
+      },
+    });
+
+    console.log("Cloning DemoProp to DemoProp2");
+
+    lsm.clone('DemoProp','DemoProp2');
+
+    console.log("Renaming DemoProp2 to DemoProp3");
+
+    lsm.rename('DemoProp2','DemoProp3');
+
+    console.log("Setting hi to hello");
+
+    lsm.set('hi','Hello');
+
+    console.log("Getting hi");
+
+    console.log(lsm.get('hi'));
+
+    console.log("Removing hi");
+
+    lsm.remove('hi'); 
+
+    console.log("Getting hi");
+
+    console.log(lsm.get('hi'));
+
+    console.log("Getting Objects");
+
+    console.log(lsm.get('DemoProp','prop1'));
+
+    console.log("Getting Object properties");
+    console.log(lsm.get('DemoProp',['prop2','val1']));
+
+    console.log("Getting Object properties arrays");
+    console.log(lsm.get('DemoProp',['prop2','val2',1]));
+
+    console.log("Getting All properties");
+    console.log(lsm.get.all());
+
+    console.log("Outputting");
+    lsm.output()
+
+    console.log("Setting and Getting Demo2");
+    lsm.default.set('Demo2','Default LSM Object');
+    console.log(lsm.default.get('Demo2'));
+
+    console.log("Removing and Getting Demo2");
+    lsm.default.remove('Demo2');
+
+    console.log(lsm.default.get('Demo2'));
+
+    lsm.default.set('Demo2','Default LSM Object');
+
+    console.log("Renaming Demo2 to Demo3");
+    lsm.default.rename('Demo2','Demo3');
+
+    console.log("Cloning Demo3 to Demo4");
+    lsm.default.clone('Demo3','Demo4');
+
+    console.log(lsm.default.get('Demo4'));
+
+    $('#reload').click(function(){
+      lsm.reload();
+      lsm.output();
+    });
+
+    console.log("Setting Greetings ang Getting");
+
+    lsm.set('Greetings',['hi','hello','HII',"hello"]);
+
+    console.log(lsm.get('Greetings'));
+
+    console.log("Session Setting ang Getting");
+
+    lsm.session.set('Demo','Demo Session');
+
+    console.log(lsm.session.get('Demo'));
+
+    console.log("initiating saveForm");
+
+    lsm.saveForm('#Demo__Form',{
+      exclude: 'input[type="hidden"], :file, .disable_save', // Passwords Are Excluded by default
+    }); // Works only in <form> tags
+
+
+    $('#LsmPlayGroundRun').click(function(){
+
+      var input = $('#LsmPlayGround').val();
+
+      lsm.runCode(input,function(data){
+
+        console.log(data);
+
+      });
+
+      //console.log(input,$('#LsmPlayGround'));
+
+    });
+
+    console.groupEnd();
+
+    console.group();
+
+    console.log("--Cookie Manager--");
+
+    lsm.cookie.outputmethod = function(text){
+      console.log(text);
+    };
+
+    lsm.cookie.options = {
+      expires: 690,
+      path: "/"
+    };
+
+    console.log("1. Create cookie: cookie name: 'Demo'; cookie values: {name_field_1:\"value1\",name_field_2:\"value2\"}");
+        lsm.cookie.new("Demo",{name_field_1:"value1",name_field_2:"value2"});
+
+        console.log("2. Check if cookie exists.");
+        console.log(lsm.cookie.check("Demo"));
+
+        console.log("3. Check if cookie value is a valid JSON.");
+        console.log(lsm.cookie.verify("Demo"));
+
+        console.log("4. Read cookie values as string.");
+        console.log(lsm.cookie.read_values("Demo"));
+
+        console.log("5. Read cookie values as JSON object.");
+        console.log(lsm.cookie.read_JSON("Demo"));
+
+        console.log("6. Read a single value from the stored JSON: index: \"name_field_1\"");
+        console.log(lsm.cookie.read_value("Demo","name_field_1"));
+
+        console.log("7. Replace a value from the stored JSON: index: \"name_field_1\", value: \"new_value\"");
+        lsm.cookie.replace_value("Demo","name_field_1","new_value");
+        console.log(lsm.cookie.read_JSON("Demo"));
+
+        console.log("8. Add a value to the stored JSON: index: \"name_field_3\", value: \"value3\"");
+        lsm.cookie.add_value("Demo","name_field_3","value3");
+        console.log(lsm.cookie.read_JSON("Demo"));
+
+        console.log("9. Remove a value from the stored JSON: index: \"name_field_1\"");
+        lsm.cookie.remove_value("Demo","name_field_1");
+        console.log(lsm.cookie.read_JSON("Demo"));
+
+    console.groupEnd()
+  </script>
+
+  <script type="text/javascript">
+    $.ajax({
+      url: 'https://api.github.com/repos/kevinj045/lsmjs/commits/master',
+      dataType: 'json',
+      success: function(data) {
+        var sha = data.sha;
+        $('.github-commit')
+          .html('GitHub Forks: '+sha)
+          .attr('href', data.html_url);
+      }
+    }); 
+
+    $('[data-type]').each(function(){
+      var $ths = $(this),
+          $txt = $ths.data('type'),i = 0;
+          $ths.html('');
+
+      function typeWriter(){
+        var thatTXT = getRealText($txt.charAt(i));
+
+        function getRealText(text){
+          switch(text){
+            case '^':
+              return '\n';
+            default:
+              return text
+          }
+        }
+
+        if (i < $txt.length) {
+          $ths.append(thatTXT);
+          i++;
+          setTimeout(typeWriter, 50);
+        }
+      }
+
+      typeWriter();
+    });
+  </script>
+</body>
+</html>
